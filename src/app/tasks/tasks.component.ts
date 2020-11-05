@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+
+
 import { Task } from '../task';
-import { TASKS } from '../mock-tasks';
+import { TaskService } from '../task.service';
+import { MessageService } from '../message.service';
+
 
 @Component({
   selector: 'app-tasks',
@@ -10,15 +14,24 @@ import { TASKS } from '../mock-tasks';
 
 export class TasksComponent implements OnInit {
 
-  tasks = TASKS;
+  
   selectedTask: Task;
 
-  constructor() { }
+  tasks : Task[];
+
+  constructor(private taskService: TaskService, private messageService: MessageService) { }
 
   ngOnInit() {
+    this.getTasks();
   }
 
   onSelect(task: Task): void {
     this.selectedTask = task;
+    this.messageService.add('TasksComponent: Selected task id=${task.id}');
+  }
+
+  getTasks(): void {
+    this.taskService.getTasks()
+        .subscribe(tasks => this.tasks = tasks);
   }
 }
