@@ -8,16 +8,16 @@ import { TaskService } from '../task.service';
   styleUrls: [ './dashboard.component.css' ]
 })
 export class DashboardComponent implements OnInit {
-  heroes: Task[] = [];
+  tasks: Task[] = [];
 
-  constructor(private heroService: TaskService) { }
+  constructor(private taskService: TaskService) { }
 
   ngOnInit() {
     this.getTasks();
   }
 
-  getHeroes(): void {
-    this.heroService.getTasks()
+  getTasks(): void {
+    this.taskService.getTasks()
       .subscribe(tasks => this.tasks = tasks.slice(1, 5));
   }
 }
