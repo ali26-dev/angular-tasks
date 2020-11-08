@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Task } from '../task';
 import { TaskService } from '../task.service';
-import { MessageService } from '../message.service';
+
 
 
 @Component({
@@ -14,20 +14,12 @@ import { MessageService } from '../message.service';
 
 export class TasksComponent implements OnInit {
 
-  
-  selectedTask: Task;
-
   tasks : Task[];
 
-  constructor(private taskService: TaskService, private messageService: MessageService) { }
+  constructor(private taskService: TaskService) { }
 
   ngOnInit() {
     this.getTasks();
-  }
-
-  onSelect(task: Task): void {
-    this.selectedTask = task;
-    this.messageService.add('TasksComponent: Selected task id=${task.id}');
   }
 
   getTasks(): void {

@@ -13,9 +13,15 @@ export class TaskService {
 
   constructor(private messageService: MessageService) { }
 
-  getHeroes(): Observable<Task[]> {
-    // TODO: send the message _after_ fetching the heroes
-    this.messageService.add('TaskService: fetched heroes');
+  getTasks(): Observable<Task[]> {
+    // TODO: send the message _after_ fetching the tasks
+    this.messageService.add('TaskService: fetched tasks');
     return of(TASKS);
+  }
+
+  getTask(id: number): Observable<Task> {
+    // TODO: send the message _after_ fetching the task
+    this.messageService.add(`TaskService: fetched task id=${id}`);
+    return of(TASKS.find(task => task.id === id));
   }
 }
